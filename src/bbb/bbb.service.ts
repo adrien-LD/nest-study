@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
+import { AaaService } from 'src/aaa/aaa.service';
 import { CreateBbbDto } from './dto/create-bbb.dto';
 import { UpdateBbbDto } from './dto/update-bbb.dto';
-import { AaaService } from '../aaa/aaa.service';
 
 @Injectable()
 export class BbbService {

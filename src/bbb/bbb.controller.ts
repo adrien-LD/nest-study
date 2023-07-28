@@ -7,19 +7,24 @@ import {
   Param,
   Delete,
   Inject,
+  UseGuards,
 } from '@nestjs/common';
 import { BbbService } from './bbb.service';
 import { AaaService } from '../aaa/aaa.service';
 import { CreateBbbDto } from './dto/create-bbb.dto';
 import { UpdateBbbDto } from './dto/update-bbb.dto';
+import { RoleGuard } from '@src/common/role.guard';
+import { Roles } from '@src/common/roles.decorator';
 
-@Controller('adrien')
+@Controller('bbb')
+@UseGuards(RoleGuard)
 export class BbbController {
   @Inject(AaaService)
   private readonly aaaService: AaaService;
   constructor(private readonly bbbService: BbbService) {}
 
   @Post()
+  @Roles('admin')
   create(@Body() createBbbDto: CreateBbbDto) {
     return this.bbbService.create(createBbbDto);
   }
